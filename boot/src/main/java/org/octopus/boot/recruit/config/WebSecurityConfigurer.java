@@ -1,5 +1,8 @@
 package org.octopus.boot.recruit.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -10,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter{
+	@Autowired
+	private DataSource dataSource;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -25,10 +31,15 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter{
             .permitAll();
 	}
 
-	@Override
+	/*@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
         .inMemoryAuthentication()
             .withUser("user").password("password").roles("USER");
+	}*/
+	
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication().dataSource(this.dataSource);
 	}
 }
