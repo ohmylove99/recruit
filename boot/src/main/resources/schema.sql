@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `authorities`;
+
 create table users (
   username varchar(256),
   password varchar(256),
