@@ -28,7 +28,15 @@ public class City implements Serializable {
 	@Column(nullable = false)
 	private String map;
 
-	protected City() {
+	public City() {
+	}
+
+	public City(Long id, String name, String state, String country, String map) {
+		this.id = id;
+		this.name = name;
+		this.state = state;
+		this.country = country;
+		this.map = map;
 	}
 
 	public City(String name, String country) {
