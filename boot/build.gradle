@@ -48,6 +48,8 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
 	
 	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile("org.springframework.boot:spring-boot-starter-security")
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	
 	//compile("com.h2database:h2")
 	compile("mysql:mysql-connector-java:5.1.9")
