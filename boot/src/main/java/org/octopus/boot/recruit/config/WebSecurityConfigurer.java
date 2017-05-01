@@ -20,6 +20,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
         .authorizeRequests()
+        	.antMatchers("/","/swagger-resources").permitAll()
             .antMatchers("/", "/home").permitAll()
             .anyRequest().authenticated()
             .and()
@@ -29,6 +30,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter{
             .and()
         .logout()
             .permitAll();
+		//http.authorizeRequests().antMatchers("/","/swagger-resources").permitAll();
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 
 	/*@Override
