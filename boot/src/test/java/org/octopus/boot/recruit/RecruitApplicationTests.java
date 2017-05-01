@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package sample.simple;
+package org.octopus.boot.recruit;
 
 import org.junit.After;
 import org.junit.Before;
@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Dave Syer
  * @author Phillip Webb
  */
-public class SampleSimpleApplicationTests {
+public class RecruitApplicationTests {
 
 	@Rule
 	public OutputCapture outputCapture = new OutputCapture();
@@ -47,26 +47,14 @@ public class SampleSimpleApplicationTests {
 	public void after() {
 		if (this.profiles != null) {
 			System.setProperty("spring.profiles.active", this.profiles);
-		}
-		else {
+		} else {
 			System.clearProperty("spring.profiles.active");
 		}
 	}
 
 	@Test
-	public void testDefaultSettings() throws Exception {
-		SampleSimpleApplication.main(new String[0]);
-		String output = this.outputCapture.toString();
-		assertThat(output).contains("Hello Phil");
-		assertThat(output).contains("The @ConfigurationProperties bean class "
-				+ "sample.simple.SampleConfigurationProperties contains "
-				+ "validation constraints but had not been annotated "
-				+ "with @Validated");
-	}
-
-	@Test
 	public void testCommandLineOverrides() throws Exception {
-		SampleSimpleApplication.main(new String[] { "--name=Gordon" });
+		RecruitApplication.main(new String[] { "--name=Gordon" });
 		String output = this.outputCapture.toString();
 		assertThat(output).contains("Hello Gordon");
 	}
